@@ -112,6 +112,7 @@ function! s:CreateBuffer()
             nnoremap <silent> <buffer> <C-l> :call posero#NextSlide()<CR>
             nnoremap <silent> <buffer> <C-j> :call posero#NextLine()<CR>
             nnoremap <silent> <buffer> <C-k> :call posero#PreviousLine()<CR>
+            nnoremap <silent> <buffer> <space> :call posero#NextAnything()<CR>
         endif
     else
         call s:Echo("Posero has no current mappings for flow control! Use `let g:posero_default_mappings = 1` in your .vimrc")
@@ -135,6 +136,10 @@ endfunction
 
 function! posero#PreviousLine()
     call s:Previous()
+endfunction
+
+function! posero#NextAnything()
+    call s:NextAnything(g:posero_current_line + 1)
 endfunction
 
 
@@ -196,6 +201,16 @@ endfunction
 function! s:AutoNextLine()
     if exists("b:posero_auto_next_line") && b:posero_auto_next_line == 1
         call s:Next(g:posero_current_line+1)
+    endif
+endfunction
+
+
+function! s:NextAnything(number)
+    let slide = g:posero_presentation[g:posero_current_slide]
+    if has_key(slide, a:number)
+        call s:Next(a:number)
+    else
+        call s:NextSlide(g:posero_current_slide + 1)
     endif
 endfunction
 
