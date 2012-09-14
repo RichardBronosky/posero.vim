@@ -108,10 +108,10 @@ function! s:CreateBuffer()
 	setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
     if exists("g:posero_default_mappings")
         if g:posero_default_mappings == 1
-            nnoremap <silent> <buffer> <C-h> :call posero#PreviousSlide()<CR>
-            nnoremap <silent> <buffer> <C-l> :call posero#NextSlide()<CR>
-            nnoremap <silent> <buffer> <C-j> :call posero#NextLine()<CR>
-            nnoremap <silent> <buffer> <C-k> :call posero#PreviousLine()<CR>
+            nnoremap <silent> <buffer> h :call posero#PreviousSlide()<CR>
+            nnoremap <silent> <buffer> l :call posero#NextSlide()<CR>
+            nnoremap <silent> <buffer> j :call posero#NextLine()<CR>
+            nnoremap <silent> <buffer> k :call posero#PreviousLine()<CR>
             nnoremap <silent> <buffer> <space> :call posero#NextAnything()<CR>
         endif
     else
